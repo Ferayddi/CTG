@@ -1,21 +1,20 @@
-const express = require('express');
+var express = require('express');
+const sqlite3 = require('sqlite3');
+const db = new sqlite3.Database('./assets/db.sqlite');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const sqlite3 = require('sqlite3');
 
-const db = new sqlite3.Database('./assets/db.sqlite');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+var router = express.Router();
 
-app.use(express.static('./public'));
 // Now need body parser
 // Need logging middleware
-app.use(morgan('common'));
-app.use(bodyParser.json());
 
-
-app.use("/node_modules", express.static('./node_modules'));
+router.use(morgan('common'));
+router.use(bodyParser.json());
+router.use(express.static('./public/index'));
+router.use("/node_modules", express.static('./node_modules'));
+router.use("/resourceAPI.js",express.static('./public/resourceAPI.js'));
 
 // HELPER FUNCTIONS, MIGHT BE MOVED TO ANOTHER JS FILE?
 
@@ -76,7 +75,7 @@ const processEvent = (req, res, next) => {
 
 //////////////////////////////////////////////////////////THE ROUTES //////////////////////////////////
 //Retrieving all the calendars:
-app.get("/calendars", (req, res, next) => {
+router.get("/calendars", (req, res, next) => {
     db.all(
         `SELECT * FROM Calendars`,
         (error, rows) => {
@@ -89,7 +88,7 @@ app.get("/calendars", (req, res, next) => {
 } );
 
 //deleting a calendar
-app.delete('/calendars/:name', (req, res, next) => {
+router.delete('/calendars/:name', (req, res, next) => {
     db.serialize( () => {
         db.get(`SELECT id FROM Calendars WHERE name=$name `,
         {
@@ -129,7 +128,7 @@ app.delete('/calendars/:name', (req, res, next) => {
 
 
 //Posting a new calendar
-app.post("/calendars", uniqueID,  (req, res, next) => {
+router.post("/calendars", uniqueID,  (req, res, next) => {
     var calendar = req.body.calendar;
     calendar.id = req.body.id;    // attached by the uniqueID middleware
 
@@ -164,7 +163,7 @@ app.post("/calendars", uniqueID,  (req, res, next) => {
 
 
 //Deleteting an event:
-app.delete('/events/:id', (req, res,next) => {
+router.delete('/events/:id', (req, res,next) => {
     db.run(
         `DELETE FROM Events WHERE id = $id;`,
         {
@@ -180,7 +179,7 @@ app.delete('/events/:id', (req, res,next) => {
   })
 
 //updating an event
-app.put('/events/:id', (req, res, next) => {
+router.put('/events/:id', (req, res, next) => {
     var id = req.params.id;
     var bool;
 
@@ -200,7 +199,7 @@ app.put('/events/:id', (req, res, next) => {
 });
 
 //Retrieving all the events:
-app.get("/events", (req, res, next) => {
+router.get("/events", (req, res, next) => {
     db.all(
         `SELECT * FROM Events`,
         (error, rows) => {
@@ -213,7 +212,7 @@ app.get("/events", (req, res, next) => {
 } );
 
 //Retrieving events from calendarId:
-app.get("/events/:calendarId", (req, res, next) => {
+router.get("/events/:calendarId", (req, res, next) => {
     db.all(
         `
             SELECT * FROM Events
@@ -235,7 +234,7 @@ app.get("/events/:calendarId", (req, res, next) => {
 
 
 //Posting a new event
-app.post("/events", processEvent, uniqueID,  (req, res, next) => {
+router.post("/events", processEvent, uniqueID,  (req, res, next) => {
     var event = req.body.event;
     event.id = req.body.id;
             db.run(
@@ -272,9 +271,4 @@ app.post("/events", processEvent, uniqueID,  (req, res, next) => {
 });
 
 
-
-app.listen(PORT, () => {
-    console.log(`App listening on PORT ${PORT}`);
-});
-
-module.exports = app;
+module.exports = router;

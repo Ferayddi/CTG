@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- MY CSS-->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!-- CALENDAR-->
+    <!--<link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" /> While trying to fix error, I realised I was using cdn for this, so i ran npm install --save @toast-ui/calendar and switch both css and js to node modules-->
+    <link rel="stylesheet" href= "../node_modules/@toast-ui/calendar/dist/toastui-calendar.min.css" />
+    <link rel="stylesheet" href="../node_modules/tui-date-picker/dist/tui-date-picker.css">
+    <link rel="stylesheet" href="../node_modules/tui-time-picker/dist/tui-time-picker.css">
+    <!-- the color picker:-->
+    <link rel="stylesheet" href="../node_modules/tui-color-picker/dist/tui-color-picker.min.css">
+
+    <title>App</title>
+  </head>
+  <body>
+    <nav class="py-4 sticky-top navbar navbar-expand-lg navbar-dark navbar-color">
+      <a class="navbar-brand" href="#">City Garden Manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link pointerCursor"  href="">App <span class="sr-only">(current)</span></a> <!--href="#" -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link pointerCursor" >about</a>  <!--href="#" -->
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link pointerCursor">More</a> <!--href="#" -->
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link pointerCursor">Login</a> <!--href="#" -->
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+        <h1 class="display-4">ACTI CITY GARDEN MANAGER</h1>
+        <p class="lead">Calendar to help with the management of City garden's reservations</p>
+        <hr class="my-4">
+        <p>Click on the event bars to get more information, or create new events!</p>
+      </div>
+      
+    <div class="container-fluid">
+      <div class="row justify-content-start bottomSpace">
+        <div class="col-12 col-xl-10 mb-3 mb-xl-0 ">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-block btn-lg btn-outline-secondary" data-toggle="modal" data-target="#createCalendarModal">
+            Add new Apartment/Good
+          </button>
+        </div>
+
+        <div class="col-12 col-xl-2">
+          <!-- Button trigger modal -->
+          <button id="deleteCaledarToggleButton" type="button" class="btn btn-block btn-lg btn-outline-secondary" data-toggle="modal" data-target="#deleteCalendarModal">
+            Delete Good
+          </button>
+        </div>
+      </div>
+
+      <div class="row bottomSpace">
+        <div class="col-sm-6 align-self-end">
+            <h5 id="rangeShown"  style="font-weight:bold"></h5>
+        </div>
+        <div class="col-sm-6  ">
+          <div class="row">
+            <div class="col-6 col-xl mb-3">
+              <button id="todayButton"  type="button" class="btn-block today btn btn-outline-secondary btn-lg">Today</button>
+            </div>
+            <div class="col-6 col-xl mb-3">
+              <button id="prevButton" type="button" class=" btn-block prev btn btn-outline-secondary btn-lg">Prev</button>
+            </div>
+            <div class="col-6 col-xl mb-3">
+              <button id="nextButton" type="button" class=" btn-block next btn btn-outline-secondary btn-lg">Next</button>
+            </div>
+            <div class="col-6 col-xl mb-3">
+              <button id="switchMonthWeekButton" type="button" class=" btn-block btn btn-outline-secondary btn-lg">Switch view</button>
+            </div>
+          </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+
+      <div class=" section container-fluid bg-light-gray">
+        <div class="row">
+          <div class="col">
+            <h3 class="heading-center"> Master Calendar:</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="section container">
+        <div id="calendar" style="height:800px; margin-bottom:30px"></div>  
+      </div>
+
+      <div class=" section container-fluid bg-light-gray">
+        <div class="row">
+          <div class="col">
+            <h3 class="heading-center"> Individual Calendars:</h3>
+          </div>
+        </div>
+      </div>
+
+      <div id= "CalendarContainer" class=" section container bottomSpace" > </div>
+
+
+
+
+    <!--content that does not directly appear: -->
+    <!-- Create Calendar Modal -->
+    <div class="modal fade" id="createCalendarModal" tabindex="-1" role="dialog" aria-labelledby="createCalendarModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createCalendarTitle">Create Apartment/Good</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="calendarNameInput">Name:</label>
+                <input type="text" class="form-control form-control-lg" id="calendarNameInput" aria-describedby="calendarNameInput" placeholder="Enter name">
+              </div>
+              <div class="form-group">
+                <p>Select color:</p>
+                <!-- PUT THE COLOR PICKER HERE-->
+                <div id="tui-color-picker-container"></div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="createCalendarButton" type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Calendar Modal -->
+    <div class="modal fade" id="deleteCalendarModal" tabindex="-1" role="dialog" aria-labelledby="deleteCalendarModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalTitle">Delete Apartment/Good</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="deleteCalendarFormSelect">Example select</label>
+                <select class="form-control" id="deleteCalendarFormSelect">
+                  <!-- Implemented already: <option>1</option> --> 
+                  <!-- <option>2</option> -->
+                  <!-- <option>3</option> -->
+                </select>
+              </div>
+              
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="deleteCalendarButton" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Name not unique MODAL -->
+    <div class="modal fade" id="errorNameNotUniqueModal" tabindex="-1" role="dialog" aria-labelledby="errorNameNotUniqueModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalTitle">Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Error, please make sure that the name is unique</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+      
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     <!-- CALENDAR-->
+    <!--<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>   While trying to fix error, I realised I was using cdn for this, so i ran npm install --save @toast-ui/calendar and switch both css and js to node modules-->
+    <!-- trying to fix-->
+    <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.js"></script>
+    <!--<script src="node_modules/tui-code-snippet/dist/tui-code-snippet.js"></script> -->
+    <script src="../node_modules/tui-time-picker/dist/tui-time-picker.js"></script>
+    <script src="../node_modules/tui-date-picker/dist/tui-date-picker.js"></script>
+    
+    <script src="../node_modules/@toast-ui/calendar/dist/toastui-calendar.min.js"></script> 
+    <!--the color picker:-->
+    <script src='../node_modules/tui-color-picker/dist/tui-color-picker.min.js'></script>
+    
+
+    <!-- MY SCRIPTS-->
+    <script src= "index.js"></script>
+    <script src="/resourceAPI.js"></script>   <!-- MAYBE THAT COULD CAUSE ERROR??? IF RESOURCE SHOULD BE IN PUBIC OR NOT-->
+    <script src="./masterCalendar.js"></script>
+     
+
+</body>
+</html>

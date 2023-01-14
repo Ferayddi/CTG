@@ -1,0 +1,109 @@
+.bottomSpace {
+    margin-bottom: 35px;
+}
+
+
+/* CUSTOMIZING THE GIVEN POP UP:  */
+
+/* Hiding busy button choice on the creation popup */
+div.toastui-calendar-popup-section:nth-child(5) {
+    visibility: hidden;
+    display:none;
+}
+
+
+/* Hiding the all day checkbox on the creation pop up */
+div.toastui-calendar-popup-section-item:nth-child(4) {
+    visibility: hidden;
+    display:none;
+}
+
+/* Hiding milestone */ 
+div.toastui-calendar-panel:nth-child(2) {
+  visibility: hidden;
+  display: none;  
+}
+
+/* hiding the location input box in the event creation popup */ 
+form div.toastui-calendar-form-container div.toastui-calendar-popup-section:nth-child(3) {
+    visibility: hidden;
+    display:none;
+}
+
+/* hiding the day view part of the calendar, should be hidden in javascript!
+div.toastui-calendar-panel:nth-child(8) {
+    visibility: hidden;
+    display:none;
+}*/
+
+
+
+/* Hide the Task*/
+.toastui-calendar-task {
+    visibility: hidden;
+    display:none;
+}
+
+
+
+/* My customization */ 
+
+/* secondary color: #17d0d5   */
+.navbar-color {
+    border-color: transparent !important;
+    background-color: #222;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #17d0d5 !important;
+}
+
+.navbar {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+
+.navbar-nav {
+    padding: 0px 15px;
+}
+
+.pointerCursor {
+    cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-weight: 700 !important; 
+}
+
+.bg-light-gray {
+    background-color: #f7f7f7;
+}
+
+.heading-center {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.section {
+    padding: 40px 0px;
+}
+
+
+
+
+

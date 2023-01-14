@@ -3,19 +3,19 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const sqlite3 = require('sqlite3');
 
-const db = new sqlite3.Database('../assets/db.sqlite');
+const db = new sqlite3.Database('./assets/db.sqlite');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static('../public'));
+app.use(express.static('./public'));
 // Now need body parser
 // Need logging middleware
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
 
-app.use("/node_modules", express.static('../node_modules'));
+app.use("/node_modules", express.static('./node_modules'));
 
 // HELPER FUNCTIONS, MIGHT BE MOVED TO ANOTHER JS FILE?
 

@@ -15,7 +15,7 @@ function deleteEvent(id) {
 
 //Updating an event
 function updateEvent(object, id) {
-  $.ajax(`events/${id}`, {
+  $.ajax(`/events/${id}`, {
     type: 'PUT',  // http method
     data: JSON.stringify(object),  // data to submit
     datatype : "application/json",
@@ -50,7 +50,7 @@ function postEvent(eventObj) {
     }
 };
 
-  $.ajax('events', {
+  $.ajax('/events', {
     type: 'POST',  // http method
     data:  JSON.stringify(toPost) ,  // data to submit
     contentType: 'application/json',
@@ -70,7 +70,7 @@ function postEvent(eventObj) {
 
 function getEventsFromCalendarId(calendarId) {
   var events;
-  $.ajax(`events/${calendarId}`, {
+  $.ajax(`/events/${calendarId}`, {
     type: 'GET',  // http method
     async: false,
     dataType: 'json',
@@ -86,7 +86,7 @@ function getEventsFromCalendarId(calendarId) {
 //retrieve all events
 function getEvents () {
   var events;
-  $.ajax('events/', {
+  $.ajax('/events/', {
     type: 'GET',  // http method
     async: false,
     dataType: 'json',
@@ -102,7 +102,7 @@ function getEvents () {
 //retrieve all calendars:
 function getCalendars () {
   var calendars;
-  $.ajax('calendars/', {
+  $.ajax('/calendars/', {
     type: 'GET',  // http method
     async: false,
     dataType: 'json',

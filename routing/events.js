@@ -1,24 +1,17 @@
 var express = require('express');
-const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('./assets/db.sqlite');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+const sqlite3 = require('sqlite3');
+const db = new sqlite3.Database('./assets/db.sqlite');
 
 var router = express.Router();
 
-// Now need body parser
-// Need logging middleware
 
 router.use(morgan('common'));
 router.use(bodyParser.json());
-router.use(express.static('./public/index'));
-router.use("/node_modules", express.static('./node_modules'));
-router.use("/resourceAPI.js",express.static('./public/resourceAPI.js'));
 
-// HELPER FUNCTIONS, MIGHT BE MOVED TO ANOTHER JS FILE?
-
-
+// HELPER:
 function uniqueID(req, res, next) {
     let s4 = () => {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -72,98 +65,8 @@ const processEvent = (req, res, next) => {
 };
 
 
-
-//////////////////////////////////////////////////////////THE ROUTES //////////////////////////////////
-//Retrieving all the calendars:
-router.get("/calendars", (req, res, next) => {
-    db.all(
-        `SELECT * FROM Calendars`,
-        (error, rows) => {
-            if (error) {
-                return res.sendStatus(500);
-            }
-            return res.status(200).send({calendars: rows});
-        }
-    );
-} );
-
-//deleting a calendar
-router.delete('/calendars/:name', (req, res, next) => {
-    db.serialize( () => {
-        db.get(`SELECT id FROM Calendars WHERE name=$name `,
-        {
-            $name:req.params.name
-        },
-        (error, row) => {
-            id = row.id;
-            db.run(`DELETE FROM Events WHERE calendarId = $id`,
-            {
-                $id: id
-            },
-            (error) => {
-                if (error) {
-                    console.log(error);
-                }
-            });
-        });
-        
-        db.run(`DELETE FROM Calendars WHERE name = $name;`,
-        {
-            $name: req.params.name
-        },
-        (error) => {
-            if (error) {
-                return res.sendStatus(500);
-
-            }
-            return res.status(200).send();
-        }
-        );
-    });
-     
-});
-
-
-
-
-
-//Posting a new calendar
-router.post("/calendars", uniqueID,  (req, res, next) => {
-    var calendar = req.body.calendar;
-    calendar.id = req.body.id;    // attached by the uniqueID middleware
-
-            db.run(
-                `
-                INSERT INTO Calendars 
-                (id, name, backgroundColor)
-                VALUES ($id, $name, $backgroundColor)
-                `,
-                {
-                    $id: calendar.id,  // event.id, set by the function uniqueID()
-                    $name: calendar.name,
-                    $backgroundColor: calendar.backgroundColor
-                },
-                function(error)  {
-                    if (error) {
-                        if (error.errno === 19) {  //sqlite constraint
-                            uniqueID(req, res, next);   //re run ID assignment middleware  REVIEW HERE, MIGHT NOT WORK
-                        }
-                        console.log("Error with post calendar db run, which isnt a sqlite constraint error");
-                        console.log(error);
-                        return res.sendStatus(500);
-                    }
-                    return res.status(201).send({id: calendar.id});
-                    
-                }
-            ); 
-    
-});
-
-
-
-
 //Deleteting an event:
-router.delete('/events/:id', (req, res,next) => {
+router.delete('/:id', (req, res,next) => {
     db.run(
         `DELETE FROM Events WHERE id = $id;`,
         {
@@ -179,7 +82,7 @@ router.delete('/events/:id', (req, res,next) => {
   })
 
 //updating an event
-router.put('/events/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
     var id = req.params.id;
     var bool;
 
@@ -199,7 +102,7 @@ router.put('/events/:id', (req, res, next) => {
 });
 
 //Retrieving all the events:
-router.get("/events", (req, res, next) => {
+router.get("/", (req, res, next) => {
     db.all(
         `SELECT * FROM Events`,
         (error, rows) => {
@@ -212,7 +115,7 @@ router.get("/events", (req, res, next) => {
 } );
 
 //Retrieving events from calendarId:
-router.get("/events/:calendarId", (req, res, next) => {
+router.get("/:calendarId", (req, res, next) => {
     db.all(
         `
             SELECT * FROM Events
@@ -234,7 +137,7 @@ router.get("/events/:calendarId", (req, res, next) => {
 
 
 //Posting a new event
-router.post("/events", processEvent, uniqueID,  (req, res, next) => {
+router.post("/", processEvent, uniqueID,  (req, res, next) => {
     var event = req.body.event;
     event.id = req.body.id;
             db.run(

@@ -135,17 +135,17 @@ function setUpCalendar (CALENDARS, setUpCreateCalendarModal, setUpDeleteCalendar
               return `<span>${value.name}</span>`;
             },
           };
-        $("#CalendarContainer").append(`<div id="${value.name}" ></div>`); // style="height: 600px"
+        $("#CalendarContainer").append(`<div id="calendar${index}" ></div>`); // style="height: 600px"
         if (index != 0) {
             //hiding the title of the valendar which shows the days name, but we only want one, at the top!
-            var style = $(`<style> #${value.name} .toastui-calendar-week-view-day-names { display:none;visibility: hidden; }</style>`);
+            var style = $(`<style> #calendar${index} .toastui-calendar-week-view-day-names { display:none;visibility: hidden; }</style>`);
             $('html > head').append(style);
         }
         //hiding the day view part of the calendar:
-        var style = $(`<style> #${value.name} div.toastui-calendar-panel:nth-child(8) { display:none;visibility: hidden; }</style>`);
+        var style = $(`<style> #calendar${index} div.toastui-calendar-panel:nth-child(8) { display:none;visibility: hidden; }</style>`);
         $('html > head').append(style);
 
-        calendarCreated = new Calendar(`#${value.name}`, OPTIONS);
+        calendarCreated = new Calendar(`#calendar${index}`, OPTIONS);
         calendarArray.push({id: value.id, calendar : calendarCreated} );
 
 

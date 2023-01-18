@@ -225,7 +225,7 @@ function setUpCalendar (CALENDARS, setUpCreateCalendarModal, setUpDeleteCalendar
      //IMPORTANT ALL OF THIS IS STILL IN THE FUNCTION WHICH IS CALLED WHEN DOCUMENT IS READY
      //HOWEVER IT IS NOT CALLED FOR EACH SINGLE CALENDAR, ONLY DEFINED ONCE!
 
-    $("#todayButton").click(
+    $(".todayButton").click(
         function () {
             masterCalendar.today();  // note that the master calendar is defined in other javascript 
             for(var i = 0; i < calendarArray.length; i++) {
@@ -234,7 +234,7 @@ function setUpCalendar (CALENDARS, setUpCreateCalendarModal, setUpDeleteCalendar
             updateDateShown(calendarArray);
         }
     );
-    $("#prevButton").click(
+    $(".prevButton").click(
         function () {
             masterCalendar.prev();
             for(var i = 0; i < calendarArray.length; i++) {
@@ -243,7 +243,7 @@ function setUpCalendar (CALENDARS, setUpCreateCalendarModal, setUpDeleteCalendar
             updateDateShown(calendarArray);
         }
     );      
-    $("#nextButton").click(
+    $(".nextButton").click(
         function () {
             masterCalendar.next();
             for(var i = 0; i < calendarArray.length; i++) {

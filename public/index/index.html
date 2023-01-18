@@ -77,18 +77,18 @@
             <h5 id="rangeShown"  style="font-weight:bold"></h5>
         </div>
         <div class="col-sm-6  ">
-          <div class="row">
-            <div class="col-6 col-xl mb-3">
-              <button id="todayButton"  type="button" class="btn-block today btn btn-outline-secondary btn-lg">Today</button>
+          <div class="row ">
+            <div class="col-6 col-xl mb-3"> <!-- I now find the button by classes instead of by id since we will hve several buttons with same functionality-->
+              <button  type="button" class=" todayButton btn-block today btn btn-outline-secondary btn-lg">Today</button>
             </div>
             <div class="col-6 col-xl mb-3">
-              <button id="prevButton" type="button" class=" btn-block prev btn btn-outline-secondary btn-lg">Prev</button>
+              <button  type="button" class=" prevButton btn-block prev btn btn-outline-secondary btn-lg">Prev</button>
             </div>
             <div class="col-6 col-xl mb-3">
-              <button id="nextButton" type="button" class=" btn-block next btn btn-outline-secondary btn-lg">Next</button>
+              <button  type="button" class=" nextButton btn-block next btn btn-outline-secondary btn-lg">Next</button>
             </div>
             <div class="col-6 col-xl mb-3">
-              <button id="switchMonthWeekButton" type="button" class=" btn-block btn btn-outline-secondary btn-lg">Switch view</button>
+              <button  type="button" class=" switchMonthWeekButton btn-block btn btn-outline-secondary btn-lg">Switch view</button>
             </div>
           </div>
                 
@@ -111,11 +111,24 @@
         <div id="calendar" style="height:800px; margin-bottom:30px"></div>  
       </div>
 
-      <div class=" section container-fluid bg-light-gray">
+      <div class=" section container-fluid bg-light-gray bottomSpace">
         <div class="row">
           <div class="col">
             <h3 class="heading-center"> Individual Calendars:</h3>
           </div>
+        </div>
+      </div>
+
+      <!-- More Buttons for more accessibility -->
+      <div class="row bottomSpace justify-content-around">
+        <div class="col-6 col-xl mb-3">
+          <button   type="button" class=" todayButton btn-block today btn btn-outline-secondary btn-lg">Today</button>
+        </div>
+        <div class="col-6 col-xl mb-3">
+          <button  type="button" class=" prevButton btn-block prev btn btn-outline-secondary btn-lg">Prev</button>
+        </div>
+        <div class="col-6 col-xl mb-3">
+          <button  type="button" class=" nextButton btn-block next btn btn-outline-secondary btn-lg">Next</button>
         </div>
       </div>
 

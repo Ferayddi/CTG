@@ -113,7 +113,7 @@ function createCalendar (CALENDARS,calendarArray) {
      //attaching the function to the buttons: Must be done after calendar is defined!
      //IMPORTANT ALL OF THIS IS STILL IN THE FUNCTION WHICH IS CALLED WHEN DOCUMENT IS READY
 
-     $("#switchMonthWeekButton").on("click", function() {
+     $(".switchMonthWeekButton").on("click", function() {
         var currentView = masterCalendar.getViewName();
         if (currentView === "week") {
             masterCalendar.changeView('month');

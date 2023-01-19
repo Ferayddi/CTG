@@ -7,8 +7,6 @@ const morgan = require('morgan');
 
 var router = express.Router();
 
-// Now need body parser
-// Need logging middleware
 
 router.use(morgan('common'));
 router.use(bodyParser.json());

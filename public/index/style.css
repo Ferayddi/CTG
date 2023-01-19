@@ -147,7 +147,8 @@ a {
     cursor: pointer;
 }
 
-p {
+p,
+label {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
@@ -162,9 +163,7 @@ h6 {
     font-weight: 700 !important; 
 }
 
-.bg-light-gray {
-    background-color: #f7f7f7;
-}
+
 
 
 .section-color {

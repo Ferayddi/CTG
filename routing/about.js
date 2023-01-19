@@ -6,20 +6,18 @@ const morgan = require('morgan');
 
 
 var router = express.Router();
-
-
 router.use(morgan('common'));
 router.use(bodyParser.json());
 
 
 router.get("/", (req,res,next) => {
-    res.sendFile("./signIn/signIn.html", {root: './public'});
+    res.sendFile("./about/about.html", {root: './public'});
 });
 router.get("/style.css", (req,res,next) => {
-    res.sendFile("./signIn/style.css", {root: './public'});
+    res.sendFile("./about/style.css", {root: './public'});
 });
-router.get("/signIn.js", (req,res,next) => {
-    res.sendFile("./signIn/signIn.js", {root: './public'});
+router.get("/about.js", (req,res,next) => {
+    res.sendFile("./about/about.js", {root: './public'});
 });
 
 

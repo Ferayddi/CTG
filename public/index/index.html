@@ -9,10 +9,15 @@
   <!-- MY CSS-->
   <link rel="stylesheet" href="./style.css">
 
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <!--font-awesome for the toggler-->
+  <link href="../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css" rel="stylesheet">
+  <link href="../../node_modules/@fortawesome/fontawesome-free/css/solid.css" rel="stylesheet">
+  
 
   <!-- CALENDAR-->
   <!--<link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" /> While trying to fix error, I realised I was using cdn for this, so i ran npm install --save @toast-ui/calendar and switch both css and js to node modules-->
@@ -27,34 +32,35 @@
 
 <body>
   <nav class="py-4 sticky-top navbar navbar-expand-lg navbar-color">
-    <a class="navbar-brand" href="/index">City Garden Manager</a>
+    <a class="navbar-brand" href="">City Garden Manager</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <i class="fa-solid fa-arrow-down"></i>  
+    </button>  
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link active pointerCursor" href="/index">App <span class="sr-only">(current)</span></a> <!--href="#" -->
+          <a class="nav-link active pointerCursor" href="">App <span class="sr-only">(current)</span></a> 
         </li>
         <li class="nav-item">
-          <a class="nav-link pointerCursor">about</a> <!--href="#" -->
+          <a class="nav-link pointerCursor" href="/about/">about</a> 
         </li>
         <li class="nav-item">
-          <a class="nav-link pointerCursor">More</a> <!--href="#" -->
+          <a class="nav-link pointerCursor">More</a> 
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link pointerCursor" href="/signIn/">Login</a> <!--href="#" -->
+          <a class="nav-link pointerCursor" href="/signIn/">Login</a> 
         </li>
       </ul>
     </div>
   </nav>
+
   <div class="head-section container-fluid bottomPadding">
     <div class="row ">
       <div class=" col-12">
-        <p class="head-section-title">ACTI CITY GARDEN MANAGER</p>
+        <p class="head-section-title">CITY GARDEN MANAGER</p>
         <p class="head-section-comment">Calendar to help with the management of City garden's reservations</p>
         <hr class="my-4">
         <p class="head-section-comment">Click on the event bars to get more information, or create new events!</p>
@@ -110,7 +116,7 @@
 
 
 
-  <div class=" section-color section-padding container-fluid bg-light-gray">
+  <div class=" section-color section-padding container-fluid ">
     <div class="row">
       <div class="col">
         <h3 class="heading-center"> Master Calendar:</h3>
@@ -122,7 +128,7 @@
     <div id="calendar" style="height:800px; margin-bottom:30px"></div>
   </div>
 
-  <div class="section-color section-padding container-fluid bg-light-gray ">
+  <div class="section-color section-padding container-fluid  ">
     <div class="row">
       <div class="col">
         <h3 class="heading-center"> Individual Calendars:</h3>
@@ -131,15 +137,17 @@
   </div>
 
   <!-- More Buttons for more accessibility -->
-  <div class="row bottomPadding upPadding justify-content-around">
-    <div class="col-6 col-xl mb-3">
-      <button type="button" class=" todayButton appButton">Today</button>
-    </div>
-    <div class="col-6 col-xl mb-3">
-      <button type="button" class=" prevButton  appButton ">Prev</button>
-    </div>
-    <div class="col-6 col-xl mb-3">
-      <button type="button" class=" nextButton  appButton ">Next</button>
+  <div class="container-fluid">
+    <div class="row bottomPadding upPadding justify-content-around">
+      <div class="col-6 col-xl mb-3">
+        <button type="button" class=" todayButton appButton">Today</button>
+      </div>
+      <div class="col-6 col-xl mb-3">
+        <button type="button" class=" prevButton  appButton ">Prev</button>
+      </div>
+      <div class="col-6 col-xl mb-3">
+        <button type="button" class=" nextButton  appButton ">Next</button>
+      </div>
     </div>
   </div>
 
@@ -263,7 +271,7 @@
   <!-- MY SCRIPTS-->
   <script src="index.js"></script>
   <script src="../resourceAPI.js"></script>
-  <!-- MAYBE THAT COULD CAUSE ERROR??? IF RESOURCE SHOULD BE IN PUBIC OR NOT-->
+ 
   <script src="./masterCalendar.js"></script>
 
 

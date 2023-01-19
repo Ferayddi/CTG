@@ -6,10 +6,11 @@ const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./assets/db.sqlite'); */
 
 
-var indexRouter = require('./index');
-var signInRouter = require('./signIn');
+var indexRouter = require('./index.js');
+var signInRouter = require('./signIn.js');
 var eventsRouter = require('./events.js');
 var calendarRouter = require('./calendar.js');
+var aboutRouter = require('./about.js');
 //var authRouter = require('./routes/auth');
 
 const app = express();
@@ -20,16 +21,9 @@ app.use("/resourceAPI.js",express.static('./public/resourceAPI.js'));
 app.use('/calendars', calendarRouter);
 app.use('/events', eventsRouter);
 app.use('/index', indexRouter);
-
+app.use('/about', aboutRouter);
 app.use('/signIn', signInRouter);
 //app.use('/', authRouter);
-
-
-
-
-
-
-
 
 
 app.listen(PORT, () => {

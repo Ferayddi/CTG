@@ -1,5 +1,5 @@
 var express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 const sqlite3 = require('sqlite3');
@@ -9,8 +9,16 @@ var router = express.Router();
 
 
 router.use(morgan('common'));
-router.use(bodyParser.json());
+//router.use(bodyParser.json());
+router.use(require('body-parser').json());
 
+checkRights = (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.status(403).send();
+    }
+}
 
 //HELPER
 function uniqueID(req, res, next) {
@@ -38,7 +46,7 @@ router.get("/", (req, res, next) => {
 } );
 
 //deleting a calendar
-router.delete('/:name', (req, res, next) => {
+router.delete('/:name',checkRights, (req, res, next) => {
     db.serialize( () => {
         db.get(`SELECT id FROM Calendars WHERE name=$name `,
         {
@@ -78,7 +86,7 @@ router.delete('/:name', (req, res, next) => {
 
 
 //Posting a new calendar
-router.post("/", uniqueID,  (req, res, next) => {
+router.post("/",checkRights, uniqueID,  (req, res, next) => {
     var calendar = req.body.calendar;
     calendar.id = req.body.id;    // attached by the uniqueID middleware
 

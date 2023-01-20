@@ -1,0 +1,62 @@
+
+
+const sqlite3 = require('sqlite3');
+const db = new sqlite3.Database('./assets/db.sqlite');
+
+function addCalendarToTable (user) {
+    db.run(
+        `
+        INSERT INTO Users 
+        (username, password, admin)
+        VALUES ($username, $password, $admin)
+        `,
+        {
+            $username: user.username,
+            $password: user.password,
+            $admin: user.admin,
+        },
+        function(error)  {
+            if (error ) {
+                console.log(error);
+                
+            }
+            
+            
+        }
+    );
+}
+
+user1 = {
+    username: 'admin',
+    password: "25012002",
+    admin: 1
+};
+
+
+db.serialize(() => {
+    db.run("DROP TABLE IF EXISTS Users", (error) => {if (error){ console.log("error when dropping table Users if exists")} });
+
+    db.run(`CREATE TABLE IF NOT EXISTS Users(
+       username TEXT PRIMARY KEY,
+       password TEXT NOT NULL,
+       admin INTEGER DEFAULT 0
+       )`,         // Not sure if Color should have empty default
+       (error) => {         //fail to create table!
+        if (error) {
+            console.log("Failed to create the Users table");
+        }
+        addCalendarToTable(user1);
+        db.close();
+            
+       }
+       ); 
+       
+    // CREATING THE CALENDAR DATABASE:
+});
+
+
+
+
+
+
+

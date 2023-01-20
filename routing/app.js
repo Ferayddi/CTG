@@ -1,10 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const morgan = require('morgan');
-/*
-const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('./assets/db.sqlite'); */
-
+const passport = require('passport');
 
 var indexRouter = require('./index.js');
 var signInRouter = require('./signIn.js');
@@ -16,6 +12,20 @@ var aboutRouter = require('./about.js');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(morgan('common'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use(passport.authenticate('session'));
+
+
+
+
+
 app.use("/node_modules", express.static('./node_modules'));
 app.use("/resourceAPI.js",express.static('./public/resourceAPI.js'));
 app.use('/calendars', calendarRouter);
@@ -24,6 +34,11 @@ app.use('/index', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/signIn', signInRouter);
 //app.use('/', authRouter);
+
+/*
+app.use(passport.initialize());
+app.use(passport.session());
+*/
 
 
 app.listen(PORT, () => {

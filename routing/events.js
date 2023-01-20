@@ -1,5 +1,5 @@
 var express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 const sqlite3 = require('sqlite3');
@@ -9,7 +9,8 @@ var router = express.Router();
 
 
 router.use(morgan('common'));
-router.use(bodyParser.json());
+//router.use(bodyParser.json());
+router.use(require('body-parser').json());
 
 // HELPER:
 function uniqueID(req, res, next) {
@@ -64,9 +65,17 @@ const processEvent = (req, res, next) => {
 
 };
 
+checkRights = (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.status(403).send();
+    }
+}
+
 
 //Deleteting an event:
-router.delete('/:id', (req, res,next) => {
+router.delete('/:id',checkRights, (req, res,next) => {
     db.run(
         `DELETE FROM Events WHERE id = $id;`,
         {
@@ -82,7 +91,7 @@ router.delete('/:id', (req, res,next) => {
   })
 
 //updating an event
-router.put('/:id', (req, res, next) => {
+router.put('/:id',checkRights, (req, res, next) => {
     var id = req.params.id;
     var bool;
 
@@ -137,7 +146,7 @@ router.get("/:calendarId", (req, res, next) => {
 
 
 //Posting a new event
-router.post("/", processEvent, uniqueID,  (req, res, next) => {
+router.post("/",checkRights, processEvent, uniqueID,  (req, res, next) => {
     var event = req.body.event;
     event.id = req.body.id;
             db.run(

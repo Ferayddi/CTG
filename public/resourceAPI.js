@@ -1,4 +1,20 @@
 
+//Checking if user is Logged: 
+function userIsLogged(setLoggedContent) {
+  $.ajax(`/signIn/check`, {
+    type: 'GET',
+    contentType: 'application/json',
+    success: function (data, status, xhr) {
+      setLoggedContent(data.loggedIn);
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+    }
+  });
+
+
+}
+
+
 //Deleting an event
 function deleteEvent(id) {
   $.ajax(`/events/${id}`, {
@@ -8,6 +24,12 @@ function deleteEvent(id) {
       
     },
     error: function (jqXhr, textStatus, errorMessage) {
+
+      if (errorMessage === "Forbidden") {
+        alert("You do not have permission to delete an event");
+        setTimeout(() => {location.reload(); }, 100);
+      }
+
     }
   });
 }
@@ -24,7 +46,10 @@ function updateEvent(object, id) {
         
     },
     error: function (jqXhr, textStatus, errorMessage) {
-        
+      if (errorMessage === "Forbidden") {
+        alert("You do not have permission to update an event");
+        setTimeout(() => {location.reload(); }, 100);
+      }
     }
 });
 }
@@ -61,6 +86,10 @@ function postEvent(eventObj) {
       theID = data.id;
     },
     error: function (jqXhr, textStatus, errorMessage) {
+      if (errorMessage === "Forbidden") {
+        alert("You do not have permission to create an event");
+        setTimeout(() => {location.reload(); }, 100);
+      }
     }
   });
   return theID;
@@ -78,6 +107,7 @@ function getEventsFromCalendarId(calendarId) {
       events = data.events;
     },
     error: function (jqXhr, textStatus, errorMessage) {
+  
     }
   });
   return events;
@@ -123,8 +153,11 @@ function getCalendars () {
       success: function (data, status, xhr) {
         
       },
-      fail: function (jqXhr, textStatus, errorMessage) {
-       
+      error: function (jqXhr, textStatus, errorMessage) {
+        if (errorMessage === "Forbidden") {
+          alert("You do not have permission to delete a calendar");
+          setTimeout(() => {location.reload(); }, 100);
+        }
       }
     });
   }
@@ -146,7 +179,10 @@ function getCalendars () {
         theID = data.id;
       },
       error: function (jqXhr, textStatus, errorMessage) {
-        console.log("fail with post ajax of calendars");
+        if (errorMessage === "Forbidden") {
+          alert("You do not have permission to create a calendar");
+          setTimeout(() => {location.reload(); }, 100);
+        }
       }
     });
     

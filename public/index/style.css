@@ -63,6 +63,7 @@ FFFFFF
     font-weight: 600;
     letter-spacing: 2px;
     font-size: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
 .navbar-color {
@@ -93,7 +94,7 @@ FFFFFF
 
 .head-section {
     padding: 50px 60px 60px 60px;
-    background: #000000;
+    background: #000000; 
 }
 
 .heading-center {

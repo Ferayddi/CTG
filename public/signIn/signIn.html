@@ -54,16 +54,18 @@
             <div class="col-12 col-sm-8 col-md-5 col-lg-4 signIn-section section-padding">
                 <div class="signIn-content">
                     <h2 class="signInTitle text-center"> Login:</h2>
-                    <div class="mb-3">
-                        <label for="emailInput" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="passwordInput" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleFormControlTextarea1"
-                            placeholder="password"></textarea>
-                    </div>
-                    <button type="button" class="loginButton pointerCursor" style="margin-top:20px">Sign in</button>
+                    <form action="/signIn/password" method="post"  > <!-- action="/signIn/password" method="post"-->
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Username</label>
+                            <input id="username" name="username" autocomplete="username" required type="text" class="form-control" placeholder="username" autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="passwordInput" class="form-label">Password</label>
+                            <input id="password"  name="password" autocomplete="current-password" required type="password" class="form-control" 
+                                placeholder="password"></textarea>
+                        </div>
+                        <button id ="logInButton" type="submit" class="loginButton pointerCursor" style="margin-top:20px">Sign in</button>
+                    </form>
                     <hr>
                     <h6 style="margin:20px" class="text-center">OR</h6>
                     <div class="container-fluid">

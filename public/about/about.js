@@ -11,3 +11,6 @@ function setLoggedNav(checked) {
 function checkLoggedIn() {
     userIsLogged(setLoggedNav);
 }
+
+
+

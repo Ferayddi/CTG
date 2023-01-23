@@ -12,7 +12,6 @@ var router = express.Router();
 router.use(morgan('dev'));
 
 
-
 passport.use(new LocalStrategy(function verify(username, password, cb) {
     console.log(username);
     console.log(password);
@@ -94,6 +93,10 @@ router.get("/style.css", (req,res,next) => {
 });
 router.get("/signIn.js", (req,res,next) => {
     res.sendFile("./signIn/signIn.js", {root: './public'});
+});
+
+router.get("/signInAnimations.js", (req,res,next) => {
+    res.sendFile("./signIn/signInAnimations.js", {root: './public'});
 });
 
 

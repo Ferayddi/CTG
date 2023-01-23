@@ -20,6 +20,12 @@ router.get("/about.js", (req,res,next) => {
     res.sendFile("./about/about.js", {root: './public'});
 });
 
+router.get("/aboutAnimations.js", (req,res,next) => {
+    res.sendFile("./about/aboutAnimations.js", {root: './public'});
+});
+
+
+
 
 
 

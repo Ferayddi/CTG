@@ -2,47 +2,60 @@
 /* common to all pages: */
 
 
-.navbar-color {
-    border-color: transparent !important;
-    background-color: #FCA311;
-}
-.navbar-nav {
-    padding: 0px 15px;
-}
-.navbar{
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    text-transform: uppercase;
-    color: black;
-    font-weight: 600;
-    letter-spacing: 2px;
-    font-size: 20px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-}
-
-.bottomPadding {
-    padding-bottom: 35px;
-}
-.upPadding {
-    padding-top: 35px;
-}
-
-.section-padding {
-    padding: 40px 0px;
-    
-}
-
-
-a:hover,
-a:focus,
-a:active,
-a.active {
-    color: white !important;
-}
-
-a {
-    color: black !important;
-}
-
 
 /* NOT COMMON to all pages */
 
+.verticalSpacerLine {
+    opacity: 50%;
+    height: 25vh;
+    display: block;
+    width: 1%;
+    border-left: 4px dotted black;
+}
+
+.about-title {
+    font-family: 'Montserrat';
+    text-align:center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 125px;
+    line-height: 73px;
+    color:#405D47 ;
+    line-height: 1.12em;
+    
+}
+
+.small-spacer {
+    display: block;
+    height: 20vh;
+}
+
+.container1-title {
+    padding-top: 10px;
+    font-family: 'Montserrat';
+    text-align:center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 100px;
+    line-height: 73px;
+    color:white ;
+    line-height: 1.12em;
+    opacity: 0;
+ 
+    
+}
+
+.animatedContainer {
+    width: 100px;
+    height: 100px;
+    transform: rotate(45deg); 
+    background-color: #677865;
+    overflow: hidden;
+    border-radius: 8px;
+
+}
+
+.trial {
+    width: 100vh;
+    background-color:black;
+}

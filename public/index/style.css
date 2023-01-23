@@ -56,126 +56,73 @@ FFFFFF
 
 /* secondary color: #17d0d5   */
 
-.navbar {
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    text-transform: uppercase;
-    color: black;
-    font-weight: 600;
-    letter-spacing: 2px;
-    font-size: 20px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+
+
+/* Unique */ 
+
+
+.textCTG {
+    opacity: 0;
 }
 
-.navbar-color {
-    border-color: transparent !important;
-    background-color: #FCA311;
-}
-.navbar-nav {
-    padding: 0px 15px;
+.rangeShown {
+    font-weight:bold;
+    color:black;
 }
 
+.appPic {
+    width: 100%;
+    height:100%;
+    filter:brightness(50%);
+    object-fit: cover;
+    object-position: 100% 50%;
+
+}
+
+.head-text-section {
+    position: absolute;
+    top:40%;
+    left:50%;
+    width:75%;
+    transform: translate(-50%, -50%);
+}
 .head-section-title {
     font-family: 'Montserrat';
+    text-align:center;
     font-style: normal;
     font-weight: 700;
-    font-size: 60px;
+    font-size: 125px;
     line-height: 73px;
-    color: #FCA311;
+    color: white;
+    line-height: 1.12em;
+    
 }
 
 .head-section-comment {
     font-family: 'Montserrat';
     font-style: italic;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 24px;
-    color: #E5E5E5;
+    color: white;
+    font-style: italic;
+    text-align:center;
+
 }
 
 .head-section {
+    position:relative;
+    width:100%;
+    height: 100vh;
     padding: 50px 60px 60px 60px;
-    background: #000000; 
+    background: #405D47; 
+    padding: 0;
+    overflow:hidden;
 }
 
-.heading-center {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 40px;
-    text-align: center;
-    color:white;
+@media (max-width: 768px) {
+    .head-section-title {
+        font-size: 75px;
+    }
 }
-
-.bottomPadding {
-    padding-bottom: 35px;
-}
-.upPadding {
-    padding-top: 35px;
-}
-
-.section-padding {
-    padding: 40px 0px;
-    
-}
-
-
-a:hover,
-a:focus,
-a:active,
-a.active {
-    color: white !important;
-}
-
-a {
-    color: black !important;
-}
-
-.appButton {
-    width: 100%;
-    height:60px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size:20px;
-    background-color:#E5E5E5;
-    border:none;
-}
-
-.appButton:hover {
-    background-color:#FCA311;
-}
-
-
-.pointerCursor {
-    cursor: pointer;
-}
-
-p,
-label {
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
-    font-weight: 700 !important; 
-}
-
-
-
-
-.section-color {
-    background-color:#14213D;
-}
-
-.rangeShown {
-    font-weight:bold;
-    color:#FCA311;
-}
-
-
-
 

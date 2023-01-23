@@ -1,0 +1,120 @@
+.body {
+    background-color: #677865;
+}
+
+.navbar {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 20px;
+    box-shadow: 0 8px 8px 5px rgba(0,0,0,.2);
+    /*transform: translate(100%, 0);*/
+}
+
+.navbar-color {
+    border-color: transparent !important;
+    background-color: #1F4128;
+}
+.navbar-nav {
+    padding: 0px 15px;
+}
+
+
+
+.heading-center {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 40px;
+    text-align: center;
+    color:black;
+}
+
+.bottomPadding {
+    padding-bottom: 35px;
+}
+.upPadding {
+    padding-top: 35px;
+}
+
+
+
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+   /*nothing yet */ 
+    
+}
+a.navResponsive:hover {
+    transform: scale(1.3,1.3);
+}
+
+
+a {
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in;
+    transform-origin: center center; 
+    transform: scale(1,1);
+    color: white !important;
+}
+
+.appButton {
+    width: 100%;
+    height:60px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size:20px;
+    color:white;
+    background-color:#677865;
+    border:none;
+}
+
+.appButton:hover {
+    background-color:#405D47;
+}
+
+
+.pointerCursor {
+    cursor: pointer;
+}
+
+p,
+label {
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-weight: 700 !important; 
+}
+
+
+
+.section-padding {
+    padding: 60px 0px;
+    
+}
+
+.section-color {
+    background-color:#EBEAE8;
+}
+
+.section-spacing {
+    padding: 20px 0px;
+    background-color:white;
+}
+
+.big-spacer {
+    display: block;
+    height: 35vh;
+}

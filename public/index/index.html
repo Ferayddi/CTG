@@ -8,6 +8,11 @@
 
   <!-- MY CSS-->
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="../common.css">
+
+  <!--GSAP script-->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 
 
   <!-- Bootstrap CSS -->
@@ -32,7 +37,7 @@
 
 <body>
   <nav class="py-4 sticky-top navbar navbar-expand-lg navbar-color">
-    <a class="navbar-brand" href="">City Garden Manager</a>
+    <a class="navbar-brand" >City Garden Manager</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa-solid fa-arrow-down"></i>  
@@ -40,79 +45,45 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-          <a class="nav-link active pointerCursor" href="">App <span class="sr-only">(current)</span></a> 
+          <a class="nav-link active pointerCursor navResponsive" >App <span class="sr-only">(current)</span></a> 
         </li>
         <li class="nav-item">
-          <a class="nav-link pointerCursor" href="/about/">about</a> 
+          <a class="nav-link pointerCursor navResponsive aboutRedirectButton">about</a> 
         </li>
         <li class="nav-item">
-          <a class="nav-link pointerCursor">More</a> 
+          <a class="nav-link pointerCursor navResponsive">More</a> 
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li id="loginNavItem" class="nav-item">
-          <a class="nav-link pointerCursor" href="/signIn/">Login</a> 
+          <a  class=" loginRedirectButton nav-link pointerCursor navResponsive" >Login</a>  <!--href="/signIn/"-->
         </li>
       </ul>
     </div>
   </nav>
 
+  <!--
   <div class=" head-section container-fluid bottomPadding">
     <div class="row ">
       <div class=" col-12">
         <p class="head-section-title">CITY GARDEN MANAGER</p>
-        <p class="head-section-comment">Calendar to help with the management of City garden's reservations</p>
-        <hr class="my-4">
-        <p class="head-section-comment">Click on the event bars to get more information, or create new events!</p>
+        <p class="head-section-comment">Calendar to help with the management of City garden's reservations <br> Click on the event bars to get more information, or create new events! </p>
       </div>
     </div>
-  </div>
+  </div>  -->
 
-  <div class="loggedInContent section-padding section-color container-fluid">
-    <div class="  row justify-content-start bottomPadding">
-      <div class="col-12 col-xl-10 mb-3 mb-xl-0 ">
-        <!-- Button trigger modal -->
-        <button type="button" class=" appButton" data-toggle="modal"
-          data-target="#createCalendarModal">
-          Add new Apartment/Good
-        </button>
-      </div>
-
-      <div class="col-12 col-xl-2">
-        <!-- Button trigger modal -->
-        <button id="deleteCaledarToggleButton" type="button" class="appButton"
-          data-toggle="modal" data-target="#deleteCalendarModal">
-          Delete Good
-        </button>
+  <div class="head-section ">
+    <img class="appPic" src="./../photos/IMG_8067-76-HDR.jpeg" alt="Building picture" >
+      <div class="head-text-section">
+        <p class="head-section-title"><span  class="textCTG">CITY </span><span  class="textCTG">GARDEN </span><span  class="textCTG">MANAGER</span></p>
+        <p class="head-section-comment">Calendar to help with the management of City garden's reservations <br> Try and click on the event bars to get more information, or create new events! </p>
       </div>
     </div>
 
-    <div class=" row bottomPadding">
-      <div class="col-sm-6 align-self-end">
-        <h5 class="rangeShown"></h5>
-      </div>
-      <div class="col-sm-6  ">
-        <div class="row ">
-          <div class="col-6 col-xl mb-3">
-            <!-- I now find the button by classes instead of by id since we will hve several buttons with same functionality-->
-            <button type="button" class=" todayButton  appButton ">Today</button>
-          </div>
-          <div class="col-6 col-xl mb-3">
-            <button type="button" class=" prevButton  appButton ">Prev</button>
-          </div>
-          <div class="col-6 col-xl mb-3">
-            <button type="button" class=" nextButton appButton ">Next</button>
-          </div>
-          <div class="col-6 col-xl mb-3">
-            <button type="button" class=" switchMonthWeekButton  appButton ">Switch
-              view</button>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>
+  <!-- <img class="appPic" src="./../photos/IMG_8067-76-HDR.jpeg" alt="Building picture"> -->
+    <!--
+  <div class="section-spacing "></div>
+      -->
 
 
 
@@ -122,10 +93,50 @@
         <h3 class="heading-center"> Master Calendar:</h3>
       </div>
     </div>
+    
   </div>
 
-  <div class=" loggedInContent section-padding container">
-    <div id="calendar" style="height:800px; margin-bottom:30px"></div>
+  <div class=" section-padding container-fluid">
+    <div class=" row">
+      <div class="col-sm-6 align-self-end">
+        <h5 class="rangeShown"></h5>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      
+      <div class="col-12 col-md-4 mb-3 mb-md-0 ">
+        <button type="button" class=" appButton" data-toggle="modal"
+          data-target="#createCalendarModal">
+          Add new Apartment
+        </button>
+      </div>
+      <div class="col-12 col-md-2 mb-3 mb-md-0">
+        <button id="deleteCaledarToggleButton" type="button" class="appButton"
+          data-toggle="modal" data-target="#deleteCalendarModal">
+          Delete Apartment
+        </button>
+      </div>
+      <div class="col-12 col-md-2 mb-3  mb-md-0">
+        <!-- I find the buttons by id -->
+        <button type="button" class=" todayButton  appButton ">Today</button>
+      </div>
+      <div class="col-12 col-md-2 mb-3  mb-md-0">
+        <button type="button" class=" switchMonthWeekButton  appButton ">Switch
+          view</button>
+      </div>
+      <div class="col-6 col-md-1">
+            <button type="button" class=" prevButton  appButton "><i class="fa-solid fa-caret-left"></i></button> <!--prev-->
+          </div>
+          <div class="col-6 col-md-1">
+            <button type="button" class=" nextButton appButton "><i class="fa-solid fa-caret-right"></i></button> <!-- next-->
+          </div>
+
+      </div>
+    </div>
+
+      <div id="calendar" style="height:600px; "></div>
+
+
   </div>
 
   <div class="section-color section-padding container-fluid  ">
@@ -137,21 +148,41 @@
   </div>
 
   <!-- More Buttons for more accessibility -->
-  <div class=" loggedInContent container-fluid">
-    <div class="row bottomPadding upPadding justify-content-around">
-      <div class="col-6 col-xl mb-3">
-        <button type="button" class=" todayButton appButton">Today</button>
+  <div class=" container-fluid section-padding">
+    <div class="row justify-content-end">
+      <div class="col-12 col-md-4 mb-3 mb-md-0 ">
+        <button type="button" class=" appButton" data-toggle="modal"
+          data-target="#createCalendarModal">
+          Add new Apartment
+        </button>
       </div>
-      <div class="col-6 col-xl mb-3">
-        <button type="button" class=" prevButton  appButton ">Prev</button>
+
+      <div class="col-12 col-md-2 mb-3  mb-md-0">
+        <button id="deleteCaledarToggleButton" type="button" class="appButton"
+          data-toggle="modal" data-target="#deleteCalendarModal">
+          Delete Apartment
+        </button>
       </div>
-      <div class="col-6 col-xl mb-3">
-        <button type="button" class=" nextButton  appButton ">Next</button>
+
+      <div class="col-12 col-md-2 mb-3 ">
+        <!-- I find the buttons by id -->
+        <button type="button" class=" todayButton  appButton ">Today</button>
       </div>
+      <div class="col-6 col-md-2 mb-3 mb-md-0">
+        <button type="button" class=" prevButton  appButton "><i class="fa-solid fa-caret-left"></i></button> <!--prev-->
+      </div>
+      <div class="col-6 col-md-2 mb-3 mb-md-0">
+        <button type="button" class=" nextButton appButton "><i class="fa-solid fa-caret-right"></i></button> <!-- next-->
+      </div>
+
     </div>
+
+    <div id="CalendarContainer" class="section container upPadding bottomPadding"> </div>
+
+ 
   </div>
 
-  <div id="CalendarContainer" class="loggedInContent section container upPadding bottomPadding"> </div>
+  
 
 
 
@@ -271,7 +302,7 @@
   <!-- MY SCRIPTS-->
   <script src="index.js"></script>
   <script src="../resourceAPI.js"></script>
- 
+  <script src="./indexAnimations.js"></script>
   <script src="./masterCalendar.js"></script>
 
 

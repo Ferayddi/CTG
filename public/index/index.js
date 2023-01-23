@@ -22,17 +22,16 @@ $(document).ready( function() {
     var CALENDARS = getCalendars();
     setUpCalendar(CALENDARS, setUpCreateCalendarModal, setUpDeleteCalendarModal); // the events are created at the end of Set Up calendar    
     checkLoggedIn();
+    
 });
+
+
+
 
 function setLoggedContent(checked) {
     if (checked) {
         $("#loginNavItem").empty();
         $("#loginNavItem").append("<h5>Logged in </h5>");
-        /*
-        var elements = $(".loggedInContent");
-        for(var element of elements) {
-            console.log(element);
-        }*/
     } 
 }
 function checkLoggedIn() {

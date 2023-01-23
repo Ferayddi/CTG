@@ -1,14 +1,15 @@
 $(document).ready( function() {
     gsap.registerPlugin(ScrollTrigger);
-    setTimeout(tabAnimation,100);
     setAboutTitleAnimation();
     setContainersAnimations();
 });
+/*
 
 function tabAnimation() {
     gsap.fromTo('.navbar', {x: "100%"}, {duration: 1.2, x: 0, ease: "circ.out"});
-}
+}*/
 
+/*
 $(".appRedirectButton").on("click", () => {
     gsap.to('.navbar', {duration: 0.7, x: '-100%', ease: "circ.out", onComplete: () => {window.location.href = '/index/'}} );
 });
@@ -16,6 +17,7 @@ $(".appRedirectButton").on("click", () => {
 $(".loginRedirectButton").on("click", () => {
     gsap.to('.navbar', {duration: 0.7, x: '-100%', ease: "circ.out", onComplete: () => {window.location.href = '/signIn/'}} );
 });
+*/
 
 function setAboutTitleAnimation()  {
     const timeline = gsap.timeline();
@@ -27,17 +29,29 @@ function setAboutTitleAnimation()  {
 
 
 function setContainersAnimations() {
-    let widthUnit = (window.screen.width)/100;
-    const desiredWidth = widthUnit * 50;
+    //let widthUnit = (window.screen.width)/100;
+    //const desiredWidth = widthUnit * 80;
 
-    const timeline1 = gsap.timeline({scrollTrigger: {
-        trigger: '.aboutContainer1',
-        start: "top 60%",
-        markers: true
-    },});
+    var numberOfContainers = 3; 
 
 
-    timeline1.to( '.aboutContainer1',
+    
+    for (var i = 1; i <= numberOfContainers; i++) {
+        var classOfContainer = `.aboutContainer${i}`;
+        var classOfContent = `.c${i}`;
+        var timelineArray = [];
+
+
+        timelineArray[i] = gsap.timeline({scrollTrigger: {
+            trigger: classOfContainer,
+            start: "top 40%",
+            end: "top 2%",
+            toggleActions: "play reverse restart reverse",
+            markers: true
+        },});
+
+
+    timelineArray[i].to( classOfContainer,
     {
         borderRadius: 8,
         rotation: 0,
@@ -45,24 +59,28 @@ function setContainersAnimations() {
         ease: 'power1',
         
     })
-    .to( '.aboutContainer1',
+    .to( classOfContainer,
     {
-        height: "50vh", 
+        minHeight: "500px", 
         duration: 0.5 ,
         ease: 'power1'
     }
     )
-    .to( '.aboutContainer1',
+    .to(classOfContainer,
     {
-        width: desiredWidth,
+        width: "90%",
         duration: 1,
         ease: 'power1'
     }
-    ).to('.container1-title', {
-        opacity: 1,
+    ).to(classOfContent, {
+        opacity: 0.85,
         duration: 1,
-        ease: 'power1'
+        ease: 'power1',
+        stagger: 0.5
     });
+}
+
+
 }
 
 

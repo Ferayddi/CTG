@@ -2,7 +2,6 @@
 
 $(document).ready( function() {
     gsap.registerPlugin(ScrollTrigger);
-    setTimeout(() => tabAnimation(), 10);
     setTimeout(() => myAnimation(), 10);
 });
 
@@ -18,10 +17,12 @@ function myAnimation () {
     } );
 }
 
+/*
 function tabAnimation() {
     gsap.fromTo('.navbar', {x: "100%"}, {duration: 1.2, x: 0, ease: "circ.out"});
-}
+}*/
 
+/*
 $(".loginRedirectButton").on("click", () => {
     gsap.to('.navbar', {duration: 0.7, x: '-100%', ease: "circ.out", onComplete: () => {window.location.href = '/signIn/'}} );
 })
@@ -29,3 +30,4 @@ $(".loginRedirectButton").on("click", () => {
 $(".aboutRedirectButton").on("click", () => {
     gsap.to('.navbar', {duration: 0.7, x: '-100%', ease: "circ.out", onComplete: () => {window.location.href = '/about/'}} );
 })
+*/

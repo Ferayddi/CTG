@@ -4,13 +4,32 @@
 
 
 /* NOT COMMON to all pages */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.about-background {
+    position:fixed;
+    height: 100%;
+    width: 100%;
+}
+.about-background-image {
+    height:100%;
+    width:100%;
+    object-fit: cover;
+    filter: brightness(40%);
+    object-position: center top;
+   
+}
+
 
 .verticalSpacerLine {
     opacity: 50%;
     height: 25vh;
     display: block;
     width: 1%;
-    border-left: 4px dotted black;
+    border-left: 10px dotted white;
 }
 
 .about-title {
@@ -20,28 +39,45 @@
     font-weight: 700;
     font-size: 125px;
     line-height: 73px;
-    color:#405D47 ;
+    color:white ;
     line-height: 1.12em;
     
 }
 
-.small-spacer {
-    display: block;
-    height: 20vh;
+
+.container-content {
+    opacity:0
 }
 
-.container1-title {
-    padding-top: 10px;
+.container-title {
+    font-size: 60px;
+    padding-top: 35px;
     font-family: 'Montserrat';
     text-align:center;
     font-style: normal;
     font-weight: 600;
-    font-size: 100px;
     line-height: 73px;
-    color:white ;
+    color: black ;
     line-height: 1.12em;
-    opacity: 0;
  
+    
+}
+
+
+.container-comment {
+    font-size: 30px;
+    padding-top: 15px;
+    font-family: 'Montserrat';
+    text-align: justify;
+    font-style: normal;
+    font-weight: 60;
+    line-height: 73px;
+    color: black ;
+    line-height: 1.12em;
+    padding-right: 60px;
+    padding-left: 60px;
+    font-style:italic;
+
     
 }
 
@@ -49,7 +85,8 @@
     width: 100px;
     height: 100px;
     transform: rotate(45deg); 
-    background-color: #677865;
+    background-color: white ; /*#1F4128 */
+    opacity: 80%;
     overflow: hidden;
     border-radius: 8px;
 
@@ -58,4 +95,15 @@
 .trial {
     width: 100vh;
     background-color:black;
+}
+
+@media (max-width: 768px) {
+    .container-title {
+        font-size: 50px;
+    }
+
+    .container-comment {
+        font-size: 20px;
+
+    }
 }

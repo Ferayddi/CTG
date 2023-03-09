@@ -90,7 +90,7 @@ FFFFFF
     font-family: 'Montserrat';
     text-align:center;
     font-style: normal;
-    font-weight: 500; /* 700 */
+    /*font-weight: 500;  700 */
     font-size: 7rem;
     line-height: 60px;
     color: white;
@@ -121,6 +121,10 @@ FFFFFF
 }
 
 @media (max-width: 768px) {
-    
+    .head-section-title {
+        font-size: 4rem;
+
+        
+    }
 }
 

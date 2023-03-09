@@ -42,11 +42,11 @@ function checkLoggedIn() {
 
 // Settinp up the modal for Delete Calendar ( Written: "Delete Good ")
 function setUpDeleteCalendarModal() {
-    $("#deleteCaledarToggleButton").on("click", function() {
+    $(".deleteCaledarToggleButton").on("click", function() {
         var cals = getCalendars();
-        $("#deleteCalendarFormSelect").empty();
+        $(".deleteCalendarFormSelect").empty();
         cals.forEach((value) => {
-            $("#deleteCalendarFormSelect").append(`<option> ${value.name} </option>`);
+            $(".deleteCalendarFormSelect").append(`<option> ${value.name} </option>`);
         });
 
     });

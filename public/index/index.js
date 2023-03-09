@@ -9,7 +9,7 @@ const colorPicker = tui.colorPicker;
 function updateDateShown(calendarArray) {
     if (calendarArray.length > 0) {
         var currentRange = calendarArray[0].calendar.getDateRangeStart();
-        $(".rangeShown").text("From " +currentRange.getDate() + "/" + currentRange.getMonth() +1 + "/" + currentRange.getFullYear() + " onwards");
+        $(".rangeShown").text("From " + currentRange.getDate() + "/" + (currentRange.getMonth() + 1) + "/" + currentRange.getFullYear() + " onwards");
     } else {
         $(".rangeShown").text("");
     }

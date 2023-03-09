@@ -46,8 +46,7 @@ function setContainersAnimations() {
             trigger: classOfContainer,
             start: "top 40%",
             end: "top 2%",
-            toggleActions: "play reverse restart reverse",
-            markers: true
+            toggleActions: "play reverse play reverse"
         },});
 
 

@@ -44,9 +44,9 @@ function checkLoggedIn() {
 function setUpDeleteCalendarModal() {
     $(".deleteCaledarToggleButton").on("click", function() {
         var cals = getCalendars();
-        $(".deleteCalendarFormSelect").empty();
+        $("#deleteCalendarFormSelect").empty();
         cals.forEach((value) => {
-            $(".deleteCalendarFormSelect").append(`<option> ${value.name} </option>`);
+            $("#deleteCalendarFormSelect").append(`<option> ${value.name} </option>`);
         });
 
     });
